@@ -1037,3 +1037,117 @@ body {
         font-size: 0.85rem;
     }
 }
+
+
+/* Clinical Status Badges */
+.badge-danger {
+    background: var(--hc-danger-bg);
+    color: var(--hc-danger);
+    border: 1px solid var(--hc-danger-border);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--hc-radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Symmetrical, Institutional Clinical Table Action Buttons */
+.action-buttons-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    vertical-align: middle;
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    height: 32px;
+    min-width: 84px;
+    padding: 0 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    line-height: 1;
+    box-sizing: border-box;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-action .hc-icon,
+.btn-action svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+/* Symmetrical clinical approve button: calm clinical green */
+.btn-action-approve {
+    background: #f0fdf4;
+    color: #15803d;
+    border-color: #bbf7d0;
+}
+
+.btn-action-approve:hover {
+    background: #15803d;
+    color: #ffffff;
+    border-color: #15803d;
+}
+
+/* Symmetrical clinical decline button: calm clinical red */
+.btn-action-decline {
+    background: #fef2f2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+.btn-action-decline:hover {
+    background: #b91c1c;
+    color: #ffffff;
+    border-color: #b91c1c;
+}
+
+/* Clinical chart button: institutional clinical blue */
+.btn-action-chart {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border-color: #bfdbfe;
+    min-width: 108px;
+}
+
+.btn-action-chart:hover {
+    background: #1d4ed8;
+    color: #ffffff;
+    border-color: #1d4ed8;
+}
+
+.action-muted-status {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+    font-size: 0.8125rem;
+    color: #94a3b8;
+    font-weight: 500;
+    font-style: italic;
+    padding: 0 0.35rem;
+}
+
+@media (max-width: 640px) {
+    .action-buttons-group {
+        display: flex;
+        width: 100%;
+        gap: 0.5rem;
+    }
+    .action-buttons-group .btn-action {
+        flex: 1;
+        min-height: 38px;
+    }
+}

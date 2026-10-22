@@ -380,10 +380,11 @@
             const tbody = document.getElementById('docRosterBody');
             tbody.innerHTML = state.appointments.map(item => {
                 const isPending = item.status === 'Pending Confirmation';
+                const isDeclined = item.status === 'Declined';
                 const statusBadge = isPending 
-                    ? `<span style="background:#fef3c7; color:#92400e; padding:3px 8px; border-radius:4px; font-weight:600; font-size:0.8rem;">Pending Review</span>`
-                    : (item.status === 'Declined'
-                        ? `<span style="background:#fee2e2; color:#991b1b; padding:3px 8px; border-radius:4px; font-weight:600; font-size:0.8rem;">Declined</span>`
+                    ? `<span class="badge-warning">Pending Review</span>`
+                    : (isDeclined
+                        ? `<span class="badge-danger">Declined</span>`
                         : `<span class="badge-success">${item.status}</span>`);
 
                 return `
@@ -402,18 +403,22 @@
                     <td data-label="Action">
                         <div class="action-buttons-group">
                             ${isPending ? `
-                                <button class="btn-sm btn-primary" style="background:#16a34a;" onclick="confirmDoctorAppointment('${item.id}', '${item.patientName}')">
-                                    Approve & Confirm
+                                <button class="btn-action btn-action-approve" onclick="confirmDoctorAppointment('${item.id}', '${item.patientName}')" title="Approve and confirm appointment">
+                                    <svg class="hc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Approve</span>
                                 </button>
-                                <button class="btn-sm btn-secondary" style="background:#dc2626;" onclick="declineDoctorAppointment('${item.id}', '${item.patientName}')">
-                                    Decline
+                                <button class="btn-action btn-action-decline" onclick="declineDoctorAppointment('${item.id}', '${item.patientName}')" title="Decline appointment request">
+                                    <svg class="hc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                    <span>Decline</span>
                                 </button>
+                            ` : (isDeclined ? `
+                                <span class="action-muted-status">Slot Released</span>
                             ` : `
-                                <button class="btn-sm btn-primary" onclick="openChart('${item.patientId}', '${item.patientName}')">
+                                <button class="btn-action btn-action-chart" onclick="openChart('${item.patientId}', '${item.patientName}')" title="Open patient chart">
                                     <svg class="hc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                                    Patient Chart
+                                    <span>Patient Chart</span>
                                 </button>
-                            `}
+                            `)}
                         </div>
                     </td>
                 </tr>
