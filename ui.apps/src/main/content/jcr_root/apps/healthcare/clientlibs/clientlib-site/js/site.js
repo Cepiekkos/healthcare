@@ -84,7 +84,7 @@ window.HealthcareApp = (function() {
             btn.disabled = false;
             btn.innerText = 'Confirm Appointment';
             alertBox.style.display = 'block';
-            alertBox.innerHTML = `<strong>Appointment Confirmed!</strong> Confirmation Code: <code>${data.confirmationCode || 'APT-2026-X98'}</code>. Telehealth & room check-in details have been securely dispatched to your email.`;
+            alertBox.innerHTML = `<strong>Appointment Confirmed!</strong> Confirmation Code: <code>${data.confirmationCode || 'APT-2026-X98'}</code>. Clinic check-in and visit details have been securely dispatched to your email.`;
             form.reset();
         })
         .catch(err => {
@@ -151,10 +151,6 @@ window.DoctorApp = (function() {
 
     function closePatientChart() {
         document.getElementById('patientChartPanel').style.display = 'none';
-    }
-
-    function startTelehealth(patientName) {
-        alert(`Initiating secure HIPAA-compliant WebRTC Telehealth session with ${patientName}...\nRoom ID: TELEHEALTH-${Math.floor(1000 + Math.random() * 9000)}\nConnecting camera & microphone...`);
     }
 
     function saveClinicalNotes() {
@@ -247,7 +243,6 @@ window.DoctorApp = (function() {
         switchTab: switchTab,
         openPatientChart: openPatientChart,
         closePatientChart: closePatientChart,
-        startTelehealth: startTelehealth,
         saveClinicalNotes: saveClinicalNotes,
         prefillPrescription: prefillPrescription,
         replyToPatient: replyToPatient,

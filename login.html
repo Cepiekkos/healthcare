@@ -7,74 +7,87 @@
     <link rel="stylesheet" href="ui.apps/src/main/content/jcr_root/apps/healthcare/clientlibs/clientlib-site/css/site.css">
     <style>
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background-color: #f1f5f9;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem;
+            padding: 1rem;
             margin: 0;
             box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #0f172a;
         }
         .login-card {
             background: #ffffff;
-            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
             width: 100%;
-            max-width: 520px;
-            padding: 2.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            max-width: 480px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+        @media (min-width: 640px) {
+            .login-card {
+                padding: 2.25rem;
+            }
         }
         .login-brand {
             display: flex;
             align-items: center;
             gap: 0.75rem;
             justify-content: center;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.35rem;
         }
         .brand-icon-badge {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: #0284c7;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #0f52ba;
             color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
         .login-brand h2 {
             margin: 0;
             color: #0f172a;
-            font-size: 1.6rem;
-            font-weight: 800;
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
         }
         .role-switch-tabs {
             display: grid;
             grid-template-columns: 1fr 1fr;
             background: #f1f5f9;
+            border: 1px solid #e2e8f0;
             padding: 4px;
-            border-radius: 10px;
-            margin: 1.5rem 0;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            gap: 4px;
         }
         .role-tab {
-            padding: 0.75rem;
+            padding: 0.65rem 0.5rem;
             text-align: center;
             border: none;
-            background: none;
-            border-radius: 8px;
-            font-weight: 700;
+            background: transparent;
+            border-radius: 6px;
+            font-weight: 600;
             cursor: pointer;
             color: #64748b;
-            transition: all 0.2s;
-            font-size: 0.9rem;
+            transition: all 0.15s ease;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
+            min-height: 44px;
         }
         .role-tab.active {
             background: #ffffff;
-            color: #0284c7;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            color: #0f52ba;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.08);
         }
         .user-selector-box {
             background: #f8fafc;
@@ -86,9 +99,9 @@
         .privacy-seal {
             margin-top: 1.5rem;
             text-align: center;
-            font-size: 0.75rem;
-            color: #94a3b8;
-            border-top: 1px solid #f1f5f9;
+            font-size: 0.775rem;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
             padding-top: 1rem;
             display: flex;
             align-items: center;
@@ -104,10 +117,10 @@
             <div class="brand-icon-badge">
                 <svg class="hc-icon hc-icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg>
             </div>
-            <h2>AuraHealth Connect</h2>
+            <h2>AuraHealth</h2>
         </div>
-        <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 0;">
-            Adobe Experience Manager Clinical RBAC Gateway
+        <p style="text-align: center; color: #64748b; font-size: 0.875rem; margin-top: 0;">
+            Medical Center • Clinical & Patient Access
         </p>
 
         <div class="role-switch-tabs">

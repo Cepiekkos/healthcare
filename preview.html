@@ -413,7 +413,7 @@
                 <div class="cmp-appointment-booking" id="appointmentBookingSection">
                     <div class="booking-header">
                         <h3>Book a Doctor Appointment</h3>
-                        <p>Schedule an in-person visit or telehealth consultation.</p>
+                        <p>Schedule an in-person clinical consultation or follow-up visit.</p>
                     </div>
 
                     <form id="appointmentForm" class="booking-form" onsubmit="submitPatientAppointment(event)">
@@ -461,7 +461,7 @@
                                 <label>Consultation Type</label>
                                 <select id="consultType" class="hc-select">
                                     <option value="In-Clinic Visit">In-Clinic Visit</option>
-                                    <option value="Telehealth Video Call">Telehealth Video Call</option>
+                                    <option value="Specialist Follow-up">Specialist Follow-up</option>
                                 </select>
                             </div>
                         </div>
@@ -601,7 +601,6 @@
                     <td>
                         <div class="action-buttons-group">
                             <button class="btn-sm btn-primary" onclick="openPatientChart('${item.patientId}', '${item.patientName}')">📋 Chart</button>
-                            <button class="btn-sm btn-secondary" onclick="startTelehealth('${item.patientName}')">📹 Telehealth</button>
                         </div>
                     </td>
                 </tr>
@@ -707,10 +706,6 @@
             const res = document.getElementById('rxResultBox');
             res.style.display = 'block';
             res.innerHTML = `<strong>E-Prescription Successfully Issued!</strong> Prescription ID: <code>${rx.rxNumber}</code>. Transmitted to ${rx.pharmacy} and patient portal.`;
-        }
-
-        function startTelehealth(name) {
-            alert(`Initiating secure HIPAA-compliant WebRTC Telehealth session with ${name}...\nRoom ID: TELEHEALTH-${Math.floor(1000 + Math.random() * 9000)}`);
         }
 
         // Patient View Rendering & Interactions
