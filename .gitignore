@@ -1,0 +1,8 @@
+node_modules
+target
+core/target
+*.log
+.DS_Store
+.idea
+*.iml
+.qodo

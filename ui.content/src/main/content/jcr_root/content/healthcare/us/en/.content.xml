@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Healthcare Management Portal"
+        sling:resourceType="healthcare/components/structure/page">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <portal
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="healthcare/components/patient-portal"/>
+            <doctors
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="healthcare/components/doctor-directory"
+                title="Our Physicians & Specialists"/>
+            <booking
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="healthcare/components/appointment-booking"/>
+            <consultation
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="healthcare/components/consultation-request"/>
+        </root>
+    </jcr:content>
+</jcr:root>
