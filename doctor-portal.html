@@ -388,18 +388,18 @@
 
                 return `
                 <tr>
-                    <td><strong>${item.time}</strong><br><small class="text-muted">${item.date}</small></td>
-                    <td>
+                    <td data-label="Time & Date"><strong>${item.time}</strong><br><small class="text-muted">${item.date}</small></td>
+                    <td data-label="Patient">
                         <div><strong>${item.patientName}</strong></div>
                         <small class="text-muted">ID: ${item.patientId} | Age: ${item.age || 38}</small>
                     </td>
-                    <td>${item.type}</td>
-                    <td><span class="badge-vitals">${(() => {
+                    <td data-label="Visit Type">${item.type}</td>
+                    <td data-label="Latest Vitals"><span class="badge-vitals">${(() => {
                         const latestVitals = HealthcareStore.getClinicalRecord(item.patientId).vitals.slice(-1)[0];
                         return latestVitals ? `BP: ${latestVitals.bloodPressure} • HR: ${latestVitals.heartRate} bpm` : (item.vitals || 'No vitals recorded');
                     })()}</span></td>
-                    <td>${statusBadge}</td>
-                    <td>
+                    <td data-label="Status">${statusBadge}</td>
+                    <td data-label="Action">
                         <div class="action-buttons-group">
                             ${isPending ? `
                                 <button class="btn-sm btn-primary" style="background:#16a34a;" onclick="confirmDoctorAppointment('${item.id}', '${item.patientName}')">
@@ -526,7 +526,11 @@
                         ? new Date(entry.updatedAt).toLocaleString()
                         : 'Date not recorded';
                     [savedAt, entry.primaryDiagnosis || 'Not recorded', entry.allergies || 'Not recorded', entry.updatedBy || 'Not recorded']
-                        .forEach(value => { row.insertCell().textContent = value; });
+                        .forEach((value, idx) => {
+                        const cell = row.insertCell();
+                        cell.setAttribute('data-label', ['Saved', 'Diagnosis', 'Allergies', 'Recorded By'][idx]);
+                        cell.textContent = value;
+                    });
                 });
             }
 
@@ -542,8 +546,11 @@
             } else {
                 labReports.forEach(lab => {
                     const row = labList.insertRow();
-                    [lab.test, lab.date, `${lab.result} / ${lab.status || 'Final'}`, lab.doctorName || 'Not recorded'].forEach(value => {
-                        row.insertCell().textContent = value;
+                    const labHdrs = ['Test', 'Date', 'Result / Status', 'Reviewed By'];
+                    [lab.test, lab.date, `${lab.result} / ${lab.status || 'Final'}`, lab.doctorName || 'Not recorded'].forEach((value, idx) => {
+                        const cell = row.insertCell();
+                        cell.setAttribute('data-label', labHdrs[idx]);
+                        cell.textContent = value;
                     });
                 });
             }

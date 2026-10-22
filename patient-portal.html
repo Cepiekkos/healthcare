@@ -599,7 +599,11 @@
                     ? new Date(entry.updatedAt).toLocaleString()
                     : 'Date not recorded';
                 [savedAt, entry.primaryDiagnosis || 'Not recorded', entry.allergies || 'Not recorded', entry.updatedBy || 'Not recorded']
-                    .forEach(value => { row.insertCell().textContent = value; });
+                    .forEach((value, idx) => {
+                        const cell = row.insertCell();
+                        cell.setAttribute('data-label', ['Saved', 'Diagnosis', 'Allergies', 'Recorded By'][idx]);
+                        cell.textContent = value;
+                    });
             });
 
             const patientMedications = HealthcareStore.getActiveMedications(currentUser.id);
@@ -626,14 +630,14 @@
             const labBody = document.getElementById('patientLabResultsBody');
             labBody.innerHTML = labReports.length ? labReports.map(lab => `
                 <tr>
-                    <td><strong>${escapeClinicalText(lab.test)}</strong></td>
-                    <td>${escapeClinicalText(lab.date)}</td>
-                    <td>${escapeClinicalText(lab.result)}</td>
-                    <td>${escapeClinicalText(lab.status || 'Final')}</td>
-                    <td>${escapeClinicalText(lab.doctorName)}</td>
-                    <td><a href="/bin/healthcare/export-ehr-pdf?test=${encodeURIComponent(lab.test)}&patientId=${encodeURIComponent(currentUser.id)}" download class="link-download">Download PDF (EHR)</a></td>
+                    <td data-label="Test / Panel"><strong>${escapeClinicalText(lab.test)}</strong></td>
+                    <td data-label="Date">${escapeClinicalText(lab.date)}</td>
+                    <td data-label="Result">${escapeClinicalText(lab.result)}</td>
+                    <td data-label="Status">${escapeClinicalText(lab.status || 'Final')}</td>
+                    <td data-label="Reviewed By">${escapeClinicalText(lab.doctorName)}</td>
+                    <td data-label="Download"><a href="/bin/healthcare/export-ehr-pdf?test=${encodeURIComponent(lab.test)}&patientId=${encodeURIComponent(currentUser.id)}" download class="link-download">Download PDF (EHR)</a></td>
                 </tr>
-            `).join('') : '<tr><td colspan="5">No lab results have been recorded.</td></tr>';
+            `).join('') : '<tr><td colspan="6">No lab results have been recorded.</td></tr>';
         }
 
         async function downloadPrescriptionPdf(rxNumber) {
